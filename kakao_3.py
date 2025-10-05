@@ -16,6 +16,3 @@ def solution(dartResult):
         else:
             res_list[-1] *= -1
     return sum(res_list)
-
-
-print(solution("1T2D3D#"))
