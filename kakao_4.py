@@ -1,3 +1,5 @@
+# https://school.programmers.co.kr/learn/courses/30/lessons/72410
+
 def solution(new_id):
     answer = ''
     for char in new_id.lower():
