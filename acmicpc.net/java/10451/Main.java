@@ -1,7 +1,5 @@
 import java.util.Scanner;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,20 +17,17 @@ public class Main {
 
     private static int solve(int[] perm, int n) {
         int count = 0;
-        int[] indices = IntStream.rangeClosed(1, n).toArray();
-        HashSet<Integer> visited = new HashSet<>();
+        boolean[] visited = new boolean[n];
 
-        for (int i : indices) {
+        for (int i = 0; i < n; i++) {
+            if (visited[i]) {
+                continue;
+            }
             int next = i;
-            while (true) {
-                if (visited.contains(next)) {
-                    break;
-                }
-
-                visited.add(next);
-                next = perm[next - 1];
-
-                if (visited.contains(next)) {
+            while (!visited[next]) {
+                visited[next] = true;
+                next = perm[next] - 1;
+                if (visited[next]) {
                     count++;
                     break;
                 }
