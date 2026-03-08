@@ -1,23 +1,27 @@
-import java.util.Scanner;
-import java.util.Arrays;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
 
 public class Main {
+    private static int[] perm;
+    private static boolean[] visited;
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int t = scanner.nextInt();
-        for (int i = 0; i < t; i++) {
-            int n = scanner.nextInt();
-            scanner.nextLine();
-            String permString = scanner.nextLine();
-            int[] permIntArr = Arrays.stream(permString.split(" ")).mapToInt(Integer::parseInt).toArray();
-            System.out.println(solve(permIntArr, n)); 
+        FastReader fastReader = new FastReader();
+        int t = fastReader.nextInt();
+        while (t-- > 0) {
+            int n = fastReader.nextInt();
+            perm = new int[n];
+            for (int i = 0; i < n; i++) {
+                perm[i] = fastReader.nextInt();
+            }
+            System.out.println(solve(perm, n)); 
         }
-        scanner.close();
     }
 
     private static int solve(int[] perm, int n) {
         int count = 0;
-        boolean[] visited = new boolean[n];
+        visited = new boolean[n];
 
         for (int i = 0; i < n; i++) {
             if (visited[i]) {
@@ -34,5 +38,28 @@ public class Main {
             }
         }
         return count;
+    }
+
+    static class FastReader {
+        BufferedReader reader;
+        StringTokenizer tokenizer;
+
+        public FastReader() {
+            reader = new BufferedReader(new InputStreamReader(System.in));
+        }
+        String next() {
+            while (tokenizer == null || !tokenizer.hasMoreElements()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    return null;
+                }
+            }
+            return tokenizer.nextToken();
+        }
+
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
     }
 }
