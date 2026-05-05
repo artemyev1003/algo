@@ -6,6 +6,7 @@ import java.io.IOException;
 public class Main {
     private static int[] perm;
     private static boolean[] visited;
+
     public static void main(String[] args) {
         FastReader fastReader = new FastReader();
         int t = fastReader.nextInt();
